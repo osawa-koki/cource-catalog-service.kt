@@ -1,0 +1,4 @@
+spring:
+  application:
+    name: cource-catalog-service
+message: Hello from default profile
