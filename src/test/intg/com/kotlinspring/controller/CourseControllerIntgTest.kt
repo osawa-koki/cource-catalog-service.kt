@@ -66,6 +66,41 @@ public class CourseControllerIntgTest {
 
     println("courseDTOs: $courseDTOs")
     assertEquals(3, courseDTOs!!.size)
+  }
 
+  @Test
+  fun updateCourse() {
+
+    val courseDTO = CourseDTO(null, "kotlin", "webapi")
+
+    val savedCourseDTO = webTestClient
+      .post()
+      .uri("/v1/courses")
+      .bodyValue(courseDTO)
+      .exchange()
+      .expectStatus().isCreated
+      .expectBody(CourseDTO::class.java)
+      .returnResult()
+      .responseBody
+
+    Assertions.assertTrue {
+      savedCourseDTO?.id != null
+    }
+
+    val updatedCourseDTO = CourseDTO(savedCourseDTO?.id, "kotlin updated", "webapi updated")
+
+    val updatedCourse = webTestClient
+      .put()
+      .uri("/v1/courses/${updatedCourseDTO.id}")
+      .bodyValue(updatedCourseDTO)
+      .exchange()
+      .expectStatus().isOk
+      .expectBody(CourseDTO::class.java)
+      .returnResult()
+      .responseBody
+
+    assertEquals(updatedCourseDTO.id, updatedCourse?.id)
+    assertEquals(updatedCourseDTO.name, updatedCourse?.name)
+    assertEquals(updatedCourseDTO.category, updatedCourse?.category)
   }
 }
