@@ -26,15 +26,6 @@ class CourseControllerUnitTest {
 
     val courseDTO = CourseDTO(null, "kotlin", "webapi")
 
-
-    //
-
-    fun courseDTO(
-      id: Int? = null,
-      name: String = "kotlin",
-      description: String = "webapi",
-    ) = CourseDTO(id, name, description)
-
     // Mock
     every { courseServiceMockk.addCourse(any()) } returns courseDTO(id = 1)
 
@@ -53,5 +44,34 @@ class CourseControllerUnitTest {
     }
 
   }
+
+  @Test
+  fun retrieveAllCourses() {
+
+    every { courseServiceMockk.retrieveAllCourses() }.returnsMany(
+      listOf(
+        courseDTO(id = 1),
+        courseDTO(id = 2),
+      )
+    )
+
+    val courseDTOs = webTestClient
+      .get()
+      .uri("/v1/courses")
+      .exchange()
+      .expectStatus().isOk
+      .expectBodyList(CourseDTO::class.java)
+      .returnResult()
+      .responseBody
+
+    println("courseDTOs: $courseDTOs")
+    Assertions.assertEquals(2, courseDTOs!!.size)
+  }
+
+  fun courseDTO(
+    id: Int? = null,
+    name: String = "kotlin",
+    description: String = "webapi",
+  ) = CourseDTO(id, name, description)
 
 }
