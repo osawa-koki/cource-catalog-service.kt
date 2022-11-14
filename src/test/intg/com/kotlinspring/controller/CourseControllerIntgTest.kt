@@ -128,4 +128,17 @@ public class CourseControllerIntgTest {
       }
   }
 
+  @Test
+  fun deleteCourse() {
+    val course = Course(null, "kotlin", "webapi")
+    courseRepository.save(course)
+
+    webTestClient
+      .delete()
+      .uri("/v1/courses/{course_id}", course.id)
+      .exchange()
+      .expectStatus().isNoContent
+
+  }
+
 }
