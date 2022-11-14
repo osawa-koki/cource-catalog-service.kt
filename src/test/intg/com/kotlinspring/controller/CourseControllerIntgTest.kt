@@ -1,6 +1,7 @@
 package com.kotlinspring.controller;
 
 import com.kotlinspring.dto.CourseDTO;
+import com.kotlinspring.entity.Course
 import com.kotlinspring.repository.CourseRepository
 import com.kotlinspring.util.courseEntityList
 import org.junit.jupiter.api.Assertions
@@ -103,4 +104,28 @@ public class CourseControllerIntgTest {
     assertEquals(updatedCourseDTO.name, updatedCourse?.name)
     assertEquals(updatedCourseDTO.category, updatedCourse?.category)
   }
+
+  @Test
+  fun simple_updateCourse() {
+    val course = Course(null, "kotlin", "webapi")
+    courseRepository.save(course)
+
+    CourseDTO(course.id, "kotlin updated", "webapi updated")
+      .let {
+        webTestClient
+          .put()
+          .uri("/v1/courses/{course_id}", it.id)
+          .bodyValue(it)
+          .exchange()
+          .expectStatus().isOk
+          .expectBody(CourseDTO::class.java)
+          .returnResult()
+          .responseBody
+      }
+      .let {
+        assertEquals("kotlin updated", it?.name)
+        assertEquals("webapi updated", it?.category)
+      }
+  }
+
 }
