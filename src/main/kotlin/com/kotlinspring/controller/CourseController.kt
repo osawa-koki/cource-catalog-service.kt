@@ -15,4 +15,10 @@ class CourseController(val courseService: CourseServise) {
     return courseService.addCourse(courseDTO)
   }
 
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  fun retrieveCourses(): List<CourseDTO> {
+    return courseService.retrieveAllCourses()
+  }
+
 }
