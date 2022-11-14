@@ -1,7 +1,7 @@
 package com.kotlinspring.repository
 
-import com.kotlinspring.entity.Cource
+import com.kotlinspring.entity.Course
 import org.springframework.data.repository.CrudRepository
 
-interface CourceRepository: CrudRepository<Cource, Int> {
+interface CourceRepository: CrudRepository<Course, Int> {
 }
