@@ -1,9 +1,12 @@
 package com.kotlinspring.controller
 
 import com.kotlinspring.dto.CourseDTO
+import com.kotlinspring.entity.Course
 import com.kotlinspring.service.CourseServise
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import io.mockk.just
+import io.mockk.runs
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -87,6 +90,20 @@ class CourseControllerUnitTest {
 
     Assertions.assertEquals("kotlin updated", updatedCourse?.name)
     Assertions.assertEquals("webapi updated", updatedCourse?.category)
+  }
+
+
+  @Test
+  fun deleteCourse() {
+
+    every { courseServiceMockk.deleteCourse(any()) } just runs
+
+    webTestClient
+      .delete()
+      .uri("/v1/courses/{course_id}", 100)
+      .exchange()
+      .expectStatus().isNoContent
+
   }
 
 
