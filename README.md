@@ -14,7 +14,7 @@ Spring Boot(Kotlin)によるRESTfulAPIサーバ構築の学習目的プロジェ
 
 ```shell
 docker build -t cource-catalog .
-docker run -p 8080:8080 -it --rm --name my-cource-catalog cource-catalog
+docker run -p 8080:80 -it --rm --name my-cource-catalog cource-catalog
 ```
 
 ## 参考文献
