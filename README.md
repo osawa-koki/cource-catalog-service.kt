@@ -1,7 +1,7 @@
 # cource-catalog-service.kt
 
 Spring Boot(Kotlin)によるRESTfulAPIサーバ構築の学習目的プロジェクト。  
-実行後<http://localhost:8080>へアクセス。  
+実行後<http://localhost:80>へアクセス。  
 
 - /{name} (GET)
 - /{name} (POST)
@@ -14,7 +14,10 @@ Spring Boot(Kotlin)によるRESTfulAPIサーバ構築の学習目的プロジェ
 
 ```shell
 docker build -t cource-catalog .
-docker run -p 8080:80 -it --rm --name my-cource-catalog cource-catalog
+docker run -p 80:80 -it --rm --name my-cource-catalog cource-catalog
+
+# 一行で書くなら、、、
+docker build -t cource-catalog . && docker run -p 80:80 -it --rm --name my-cource-catalog cource-catalog
 ```
 
 ## 参考文献
