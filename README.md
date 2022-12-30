@@ -8,7 +8,21 @@ Spring Boot(Kotlin)によるRESTfulAPIサーバ構築の学習目的プロジェ
 - /{name} (PUT)
 - /{name} (DELETE)
 
-その他はcontroller内のファイルを参照。  
+---
+
+```shell
+# コース一覧の取得
+curl -X GET http://localhost:80/v1/courses
+
+# コースの登録
+curl -X POST -H "Content-Type: application/json" -d '{"name":"財務会計論", "category":"会計学"}' http://localhost:80/v1/courses
+
+# コースの変更
+curl -X PUT -H "Content-Type: application/json" -d '{"name":"租税総論", "category":"租税学"}' http://localhost:80/v1/courses/1
+
+# コースの削除
+curl -X DELETE -H http://localhost:80/v1/courses/1
+```
 
 ## 実行方法
 
