@@ -38,7 +38,7 @@ docker build -t cource-catalog . && docker run -p 80:80 -it --rm --name my-courc
 
 | キー | バリュー |
 | ---- | ---- |
-| Name | x_cource-catalog.kt |
+| Name | cource-catalog.kt |
 | Region | Oregon(US West) |
 | Branch | main |
 | Root Directory |  |
