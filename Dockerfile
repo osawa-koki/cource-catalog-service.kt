@@ -1,4 +1,5 @@
 FROM openjdk:17
+EXPOSE 80
 RUN microdnf install findutils
 COPY . /work
 WORKDIR /work
