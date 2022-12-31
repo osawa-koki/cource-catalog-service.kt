@@ -34,6 +34,19 @@ docker run -p 80:80 -it --rm --name my-cource-catalog cource-catalog
 docker build -t cource-catalog . && docker run -p 80:80 -it --rm --name my-cource-catalog cource-catalog
 ```
 
+## デプロイ設定(Render.com)
+
+| キー | バリュー |
+| ---- | ---- |
+| Name | x_cource-catalog.kt |
+| Region | Oregon(US West) |
+| Branch | main |
+| Root Directory |  |
+| Environment | Docker |
+| Dockerfile Path | ./Dockerfile |
+| Docker Build Context Directory |  |
+| Docker Command |  |
+
 ## 参考文献
 
 - <https://www.udemy.com/share/1066fY3@ro7cq5JM-ZUqurd02oBG_YiLpU4Ph4YgsiObsJzqHZ7fiv2Q9nGH8E0Mfs7yzUONlQ==/>
