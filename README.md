@@ -47,6 +47,10 @@ docker build -t cource-catalog . && docker run -p 80:80 -it --rm --name my-courc
 | Docker Build Context Directory |  |
 | Docker Command |  |
 
+## 補足
+
+`Got error "xargs is not available" when trying to run a docker image`エラー回避のため、Dockerfile内で`RUN microdnf install findutils`を実行してます。  
+
 ## 参考文献
 
 - <https://www.udemy.com/share/1066fY3@ro7cq5JM-ZUqurd02oBG_YiLpU4Ph4YgsiObsJzqHZ7fiv2Q9nGH8E0Mfs7yzUONlQ==/>
